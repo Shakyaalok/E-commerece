@@ -1,10 +1,12 @@
 import React from 'react'
 import './Cart.css'
 import cartItems from './cartItems';
+import Modal from '../../modals/Modal';
 import {Row,Col,Button} from 'react-bootstrap';
 
 const Cart = (props) => {
   return (
+    <Modal>
     <div className='container shadow'>
         <Row className='d-flex justify-content-end'>
             <Col xs='1' className='ml-auto close_cart'>
@@ -17,7 +19,7 @@ const Cart = (props) => {
         {cartItems.map((product)=>(
             <Row className='row p-2 justify-content-evenly d-flex shadow rounded'>
             <Col md='4'>
-                <img src={product.imageUrl} alt="" className='img-fluid rounded' /> 
+                <img src={product.imageUrl} alt="" className='img-fluid rounded' style={{ width:'55%'}} /> 
             </Col>
     
             <Col md='4'>
@@ -45,6 +47,7 @@ const Cart = (props) => {
 
    
     </div>
+    </Modal>
   )
 }
 

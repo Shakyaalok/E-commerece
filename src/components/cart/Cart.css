@@ -1,0 +1,6 @@
+.plus-minus>button:hover {
+    background-color: aqua;
+    border: none;
+    color: white;
+    transition: 0.5s;
+}

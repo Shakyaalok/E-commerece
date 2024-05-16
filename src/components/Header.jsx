@@ -1,8 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Container,Nav,Navbar,NavDropdown} from 'react-bootstrap'
 import './Header.css'
 
-const Header = () => {
+const Header = (props) => {
+
+  const cartHandler = ()=>{
+    props.onToggleCart(true)
+  }
+  console.log('toggle',props)
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" className='header-background'>
@@ -26,8 +31,8 @@ const Header = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
+            <Nav.Link href="#deets" className='text-white bold' onClick={cartHandler}>Cart</Nav.Link>
+            <Nav.Link eventKey={2} href="#memes" >
               Dank memes
             </Nav.Link>
           </Nav>

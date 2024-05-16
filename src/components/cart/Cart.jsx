@@ -3,9 +3,16 @@ import './Cart.css'
 import cartItems from './cartItems';
 import {Row,Col,Button} from 'react-bootstrap';
 
-const Cart = () => {
+const Cart = (props) => {
   return (
     <div className='container shadow'>
+        <Row className='d-flex justify-content-end'>
+            <Col xs='1' className='ml-auto close_cart'>
+            <button onClick={props.oncloseCart}>X</button>
+            </Col>
+        </Row>
+
+  
 
         {cartItems.map((product)=>(
             <Row className='row p-2 justify-content-evenly d-flex shadow rounded'>
@@ -32,8 +39,6 @@ const Cart = () => {
                <Button variant='warning' className='text-white'>Remove</Button>
                </div>
             </Col>
-    
-       
     
           </Row>
         ))}

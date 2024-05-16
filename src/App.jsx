@@ -14,10 +14,14 @@ function App() {
     console.log('dataBool',dataBool)
       setShowCart(prevState=>!prevState)
   }
+
+  const hideCartHandler = ()=>{
+    setShowCart(false)
+  }
   return (
     <div>
       <Header onToggleCart={toggleCartHandler}/>
-      {showCart && <Cart/>}
+      {showCart && <Cart oncloseCart={hideCartHandler}/>}
       <CarouselBody/>
       <ProductDisplay/>
       

@@ -1,13 +1,16 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import './Cart.css'
 import cartItems from './cartItems';
 import Modal from '../../modals/Modal';
 import {Row,Col,Button} from 'react-bootstrap';
+import cartContext from '../../store/cart-context';
 
 const Cart = (props) => {
+  const cartCtx = useContext(cartContext);
+  console.log('cartCtx',cartCtx)
   return (
     <Modal>
-    <div className='container shadow'>
+    <div className='container shadow total_amount_parent'>
         <Row className='d-flex justify-content-end'>
             <Col xs='1' className='ml-auto close_cart'>
             <button onClick={props.oncloseCart}>X</button>
@@ -16,8 +19,8 @@ const Cart = (props) => {
 
   
 
-        {cartItems.map((product)=>(
-            <Row className='row p-2 justify-content-evenly d-flex shadow rounded'>
+        {cartCtx.items.map((product,index)=>(
+            <Row className='row p-2 justify-content-evenly d-flex shadow rounded' key={index}>
             <Col md='4'>
                 <img src={product.imageUrl} alt="" className='img-fluid rounded' style={{ width:'55%'}} /> 
             </Col>
@@ -31,6 +34,7 @@ const Cart = (props) => {
               <h5 className='mb-1'>Product Name</h5>
               <p className='text-muted'>Price: {product.price}</p>
               <p className='text-muted'>Quantity: {product.quantity}</p>
+              
     
               <div className='d-flex align-items-center gap-5'>
               <div className='d-flex gap-1 g-md-0 align-items-center plus-minus'>
@@ -45,7 +49,9 @@ const Cart = (props) => {
           </Row>
         ))}
 
-   
+        <Row>
+          <h3 className='text-muted total_text'>Total Amount: <span>Rs-{cartCtx.totalAmount}</span></h3>
+          </Row>
     </div>
     </Modal>
   )

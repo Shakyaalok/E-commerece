@@ -6,6 +6,7 @@ import CarouselBody from './components/Carousel';
 import ProductDisplay from './components/products/ProductDisplay'
 import {Button} from 'react-bootstrap'
 import Cart from './components/cart/Cart';
+import CartProvider from './store/CartProvider'
 
 function App() {
   
@@ -20,10 +21,12 @@ function App() {
   }
   return (
     <div>
+     <CartProvider>
       <Header onToggleCart={toggleCartHandler}/>
       {showCart && <Cart oncloseCart={hideCartHandler}/>}
       <CarouselBody/>
       <ProductDisplay/>
+      </CartProvider>
       
 
 

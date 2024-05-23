@@ -23,28 +23,28 @@ const productsList = [
     },
 
     {
-        id: '4',
+        id: '5',
         title: 'Blue Color',
         price: 100,
         imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
     },
     {
-        id: '2',
-        title: 'Black and white Colors',
+        id: '6',
+        title: 'Aqua',
         price: 50,
         imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
     },
 
     {
-        id: '3',
-        title: 'Yellow and Black Colors',
+        id: '7',
+        title: 'Green',
         price: 70,
         imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
     },
 
     {
-        id: '4',
-        title: 'Blue Color',
+        id: '8',
+        title: 'Voilet',
         price: 100,
         imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
     }

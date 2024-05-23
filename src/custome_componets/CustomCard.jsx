@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Card,Button} from 'react-bootstrap'// Import Card from react-bootstrap
+import cartContext from '../store/cart-context';
+import cartItems from '../components/cart/cartItems';
+import productsList from '../components/products/productsLists';
 
 
 const CustomCard = (props) => {
-    console.log(props)
     const {id,title,price,imageUrl} = props.product;
+    const cartCtx = useContext(cartContext);
+
+    const AddToCartHandler = (product)=>{
+      //before inserting check the product existing
+      const existingProductIndex = productsList.findIndex((pr)=>pr.id===product.id);
+      console.log('ids', product.id)
+      if(existingProductIndex!==-1){
+        console.log('product',product)
+        cartCtx.addItem({
+          ...product,
+          quantity:1
+        });
+      }     
+    }
 
 
   return (
@@ -19,7 +35,7 @@ const CustomCard = (props) => {
           </Card.Text>
           
            <div className='d-flex justify-content-evenly'>
-           <Button variant='success' className='m-2'>Add to Cart</Button>
+           <Button variant='success' className='m-2' onClick={()=>AddToCartHandler(props.product)}>Add to Cart</Button>
             <Button className='m-2'>Go to Cart</Button>
            </div>
         </Card.Body>

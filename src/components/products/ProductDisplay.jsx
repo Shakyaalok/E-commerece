@@ -9,7 +9,7 @@ const ProductDisplay = () => {
 
       <div className="row">
         {productsLists.map((product) => (
-          <div className="col-sm-6 col-md-4 col-lg-4 p-2 mr-2 ml-2">
+          <div className="col-sm-6 col-md-4 col-lg-4 p-2 mr-2 ml-2" key={product.id}>
             <CustomCard product={product} />
           </div>
         ))}

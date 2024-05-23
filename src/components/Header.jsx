@@ -1,8 +1,11 @@
-import React,{useState} from 'react'
+import React,{useContext} from 'react'
 import {Container,Nav,Navbar,NavDropdown} from 'react-bootstrap'
-import './Header.css'
+import './Header.css';
+import cartContext from '../store/cart-context'
 
 const Header = (props) => {
+
+  const cartCtx = useContext(cartContext);
 
   const cartHandler = ()=>{
     props.onToggleCart(true)
@@ -31,7 +34,7 @@ const Header = (props) => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets" className='text-white bold' onClick={cartHandler}>Cart</Nav.Link>
+            <Nav.Link href="#deets" className='text-white bold cart_button_link' onClick={cartHandler}><div className='cart_button'>Cart <span>{cartCtx.items.length}</span></div></Nav.Link>
             <Nav.Link eventKey={2} href="#memes" >
               Dank memes
             </Nav.Link>

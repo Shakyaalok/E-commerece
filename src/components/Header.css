@@ -9,3 +9,30 @@
 .header-dropdown {
     background-color: white;
 }
+
+.cart_button_link {
+    margin-right: 7rem;
+}
+
+.cart_button {
+    position: relative;
+}
+
+.cart_button>span {
+    position: absolute;
+    padding: 1% 0 0 25%;
+    top: 0;
+    left: 2rem;
+    background: #45589d;
+    border-radius: 50%;
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-top: 2px;
+}
+
+@media screen and (max-width:991px) {
+    .cart_button>span {
+        padding: 0 0 0 1.6%;
+    }
+}

@@ -10,16 +10,11 @@ const CustomCard = (props) => {
     const cartCtx = useContext(cartContext);
 
     const AddToCartHandler = (product)=>{
-      //before inserting check the product existing
-      const existingProductIndex = productsList.findIndex((pr)=>pr.id===product.id);
-      console.log('ids', product.id)
-      if(existingProductIndex!==-1){
         console.log('product',product)
         cartCtx.addItem({
           ...product,
           quantity:1
-        });
-      }     
+        });    
     }
 
 

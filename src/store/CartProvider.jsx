@@ -14,7 +14,7 @@ const cartReducer = (state,action)=>{
     const existingProductIndex = state.items.findIndex((product)=>product.id=== action.item.id);
     const existingProduct = state.items[existingProductIndex];
 
-
+   console.log('provider')
     let updatedItems;
     if(existingProduct){
       const updatedItem = {
@@ -35,6 +35,33 @@ const cartReducer = (state,action)=>{
     }
   }
 
+
+  if(action.type==='REMOVE'){
+    const existingProductIndex = state.items.findIndex((product)=>product.id===action.id);
+    const existingProduct = state.items[existingProductIndex];
+    const updatedTotalAmount = state.totalAmount - existingProduct.price;
+
+    let updatedItems;
+    if(existingProduct.quantity===1){
+      updatedItems = state.items.filter((product)=>product.id!==action.id)
+    }else{
+
+      const updatedItem = {
+        ...existingProduct,
+        quantity:existingProduct.quantity-1
+      }
+  
+      updatedItems = [...state.items];
+      updatedItems[existingProductIndex] = updatedItem;
+    }
+
+    
+    return {
+      items:updatedItems,
+      totalAmount:updatedTotalAmount
+    }
+  }
+
   return initialState;
 
 }
@@ -48,10 +75,14 @@ const CartProvider = (props) => {
     cartDispatcher({type:'ADD',item:item})
   }
 
+  const removeHandler = (id) =>{
+    cartDispatcher({type:'REMOVE',id:id})
+  }
+
     const context = {
         items: cartState.items,
         addItem: addHandler,
-        removeItem: (id) => {},
+        removeItem: removeHandler,
         totalAmount: cartState.totalAmount,
         message:'this is working or not'
     }

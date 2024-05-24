@@ -7,7 +7,18 @@ import cartContext from '../../store/cart-context';
 
 const Cart = (props) => {
   const cartCtx = useContext(cartContext);
-  console.log('cartCtx',cartCtx)
+  console.log('cartCtx',cartCtx);
+
+  const addItemOnPlusHandler = (product)=>{
+   cartCtx.addItem({
+      ...product,
+      quantity:1
+    });    
+  }
+
+  const removeItemOnMinusHandler = (id)=>{
+    cartCtx.removeItem(id)
+  }
   return (
     <Modal>
     <div className='container shadow total_amount_parent'>
@@ -38,9 +49,9 @@ const Cart = (props) => {
     
               <div className='d-flex align-items-center gap-5'>
               <div className='d-flex gap-1 g-md-0 align-items-center plus-minus'>
-                <button className='rounded-circle border-0'><span style={{ fontSize: '2rem', lineHeight: '1' }}>-</span></button>
+                <button className='rounded-circle border-0' onClick={()=>addItemOnPlusHandler(product)}><span style={{ fontSize: '2rem', lineHeight: '1' }}>+</span></button>
                 <input type="number" style={{width:'2rem' , height:'2rem'}}/>
-                <button className='rounded-circle border-0'><span style={{ fontSize: '2rem', lineHeight: '1' }}>+</span></button>
+                <button className='rounded-circle border-0' onClick={()=>removeItemOnMinusHandler(product.id)}><span style={{ fontSize: '2rem', lineHeight: '1' }}>-</span></button>
                </div>
                <Button variant='warning' className='text-white'>Remove</Button>
                </div>

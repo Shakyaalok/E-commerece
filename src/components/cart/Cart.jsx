@@ -15,7 +15,7 @@ const Cart = (props) => {
       quantity:1
     });    
   }
-
+   console.log('closecart',props.oncloseCart)
   const removeItemOnMinusHandler = (id)=>{
     cartCtx.removeItem(id)
   }

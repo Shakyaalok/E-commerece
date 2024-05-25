@@ -62,6 +62,7 @@ const cartReducer = (state,action)=>{
     }
   }
 
+  
   return initialState;
 
 }
@@ -78,6 +79,8 @@ const CartProvider = (props) => {
   const removeHandler = (id) =>{
     cartDispatcher({type:'REMOVE',id:id})
   }
+
+  
 
     const context = {
         items: cartState.items,

@@ -1,12 +1,13 @@
-import logo from './logo.svg';
 import {useState} from 'react';
 import './App.css';
 import Header from './components/Header';
 import CarouselBody from './components/Carousel';
-import ProductDisplay from './components/products/ProductDisplay'
-import {Button} from 'react-bootstrap'
+import ProductDisplay from './components/products/ProductDisplay';
 import Cart from './components/cart/Cart';
 import CartProvider from './store/CartProvider'
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import About from './components/About'
+
 
 function App() {
   
@@ -21,14 +22,20 @@ function App() {
   }
   return (
     <div>
-     <CartProvider>
+    
+      <Router>
+      <CartProvider>
       <Header onToggleCart={toggleCartHandler}/>
-      {showCart && <Cart oncloseCart={hideCartHandler}/>}
-      <CarouselBody/>
-      <ProductDisplay/>
-      </CartProvider>
-      
-
+      {showCart && <Cart oncloseCart={hideCartHandler} /> }
+      <Routes>
+         <Route exact path='/home'  element={ <ProductDisplay/>}/>
+         <Route exact path='/about' element={<About/>}/>
+      </Routes>
+      </CartProvider> 
+      </Router>
+   
+   
+    
 
     </div>
   );

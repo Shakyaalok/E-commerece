@@ -5,11 +5,32 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // BootStrap Setup
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import react-router-dom
+import {RouterProvider, createBrowserRouter} from 'react-router-dom'
+import ProductDisplay from './components/products/ProductDisplay';
+import About from './components/About';
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element:<App/>,
+    children:[
+      {
+        path:'home',
+        element:<ProductDisplay/>
+      },
+      {
+        path:'about',
+        element:<About/>
+      }
+    ]
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 

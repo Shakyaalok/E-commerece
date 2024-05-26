@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import "./About.css";
 
 const About = () => {
+  console.log('this is about page')
   return (
     <div className="container-fluid" style={{ background: "grey" }}>
       <Row>

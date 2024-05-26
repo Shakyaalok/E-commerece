@@ -5,7 +5,7 @@ import CarouselBody from './components/Carousel';
 import ProductDisplay from './components/products/ProductDisplay';
 import Cart from './components/cart/Cart';
 import CartProvider from './store/CartProvider'
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import {Outlet} from 'react-router-dom'
 import About from './components/About'
 
 
@@ -22,23 +22,14 @@ function App() {
   }
   return (
     <div>
-    
-      <Router>
       <CartProvider>
       <Header onToggleCart={toggleCartHandler}/>
       {showCart && <Cart oncloseCart={hideCartHandler} /> }
-      <Routes>
-         <Route exact path='/home'  element={ <ProductDisplay/>}/>
-         <Route exact path='/about' element={<About/>}/>
-      </Routes>
+      <Outlet/> 
       </CartProvider> 
-      </Router>
-   
-   
-    
-
     </div>
   );
 }
 
 export default App;
+

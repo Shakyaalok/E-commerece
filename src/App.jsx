@@ -1,12 +1,9 @@
 import {useState} from 'react';
 import './App.css';
 import Header from './components/Header';
-import CarouselBody from './components/Carousel';
-import ProductDisplay from './components/products/ProductDisplay';
 import Cart from './components/cart/Cart';
 import CartProvider from './store/CartProvider'
 import {Outlet} from 'react-router-dom'
-import About from './components/About'
 
 
 function App() {

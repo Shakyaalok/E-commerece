@@ -9,6 +9,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import ProductDisplay from './components/products/ProductDisplay';
 import About from './components/About';
+import Movies from './components/Movies'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path:'about',
         element:<About/>
+      },
+      {
+        path:'movies',
+        element:<Movies/>
       }
     ]
   }

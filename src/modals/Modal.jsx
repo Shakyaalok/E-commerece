@@ -27,6 +27,7 @@ const Modal = (props) => {
       {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>,PortalElement)}
     </>
   )
+
 }
 
 export default Modal

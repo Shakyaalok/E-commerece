@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Container, Button, Card, Col, Row } from "react-bootstrap";
 import axios from "axios";
 
@@ -8,30 +8,43 @@ function Movies() {
   const [error,setError] = useState(false);
   const [buttonClicked,setButtonClicked] = useState(false)
 
-  console.log('movies',movies)
-  const fetchNewMovies = async () => {
+
+  const callMovie =async()=>{
     setLoading(true);
+  try {
+    const response = await axios.get("https://swapi.dev/api/films");
+    const movieData = response.data.results.map((movie) => {
+      return {
+        id: movie.episode_id,
+        title: movie.title,
+        text: movie.opening_crawl,
+        releaseDate: movie.release_date,
+      };
+    });
+    setMovies(movieData);
+    setLoading(false);
+   } catch (error) {
+    setError(true)
+   }
+  }
+
+  const fetchNewMovies = async () => {
+  
     setError(false);
     setButtonClicked(true)
-
-       try {
-        const response = await axios.get("https://swapi.dev/api/films");
-        const movieData = response.data.results.map((movie) => {
-          return {
-            id: movie.episode_id,
-            title: movie.title,
-            text: movie.opening_crawl,
-            releaseDate: movie.release_date,
-          };
-        });
-        setMovies(movieData);
-    
-       } catch (error) {
-        setError(true)
-       }
-       setLoading(false);
+      callMovie();
        setButtonClicked(false)
   };
+
+  useEffect(()=>{
+    callMovie()
+  },[])
+
+  const retrying = () =>{
+      setTimeout(()=>{
+        fetchNewMovies()
+      },5000)
+  }
 
  
 
@@ -58,7 +71,7 @@ function Movies() {
             ))}
               </Row>}
               {!loading && movies.length===0 && !error && buttonClicked && <p>No movies found!</p>}
-              {!loading && error && <p>something went wrong</p>}
+              {!loading && error && <p>something went wrong</p> && retrying() }
               {loading && <p>Loading ...</p>}
            
 

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useCallback } from "react";
 import { Container, Button, Card, Col, Row } from "react-bootstrap";
 import axios from "axios";
 
@@ -9,7 +9,7 @@ function Movies() {
   const [buttonClicked,setButtonClicked] = useState(false)
 
 
-  const callMovie =async()=>{
+  const fetchNewMovies = useCallback(async()=>{
     setLoading(true);
   try {
     const response = await axios.get("https://swapi.dev/api/films");
@@ -26,19 +26,13 @@ function Movies() {
    } catch (error) {
     setError(true)
    }
-  }
+  },[]);
 
-  const fetchNewMovies = async () => {
-  
-    setError(false);
-    setButtonClicked(true)
-      callMovie();
-       setButtonClicked(false)
-  };
+
 
   useEffect(()=>{
-    callMovie()
-  },[])
+    fetchNewMovies()
+  },[fetchNewMovies])
 
   const retrying = () =>{
       setTimeout(()=>{
